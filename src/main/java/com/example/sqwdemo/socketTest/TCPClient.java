@@ -4,6 +4,9 @@ import java.io.*;
 import java.net.Socket;
 
 /**
+ * Socket服务器与客户端交互模拟
+ * 参考：https://blog.csdn.net/anthony_ju/article/details/82192135
+ *
  * @author shenqingwen
  * @date 2021/8/10
  */
