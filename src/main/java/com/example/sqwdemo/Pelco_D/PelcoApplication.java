@@ -10,6 +10,7 @@ package com.example.sqwdemo.Pelco_D;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -18,7 +19,7 @@ public class PelcoApplication {
     public static void main(String[] args) {
         Socket s;
         try {
-            s = new Socket("192.168.1.57", 4196);
+            s = new Socket("192.168.60.95", 3084);
 
             DataOutputStream out = new DataOutputStream(s.getOutputStream());
 
@@ -26,6 +27,13 @@ public class PelcoApplication {
             out.write(b);
             out.flush();
             out.close();
+
+            InputStream in = s.getInputStream();      //字节输入流,读取服务器返回的数据
+            byte[] data = new byte[1024];
+            int len;
+            len = in.read(data);
+            System.out.println(new String(data, 0, len));
+            s.close();
         } catch (UnknownHostException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -59,7 +67,7 @@ public class PelcoApplication {
         b[4] = (byte) s4;
         b[5] = (byte) s5;
 
-        //q前面值相加对256取余数，校驗
+        //求前面值相加对256取余数，校驗
         int sum = 0;
         for (int i = 1; i < 6; i++) {
             sum = sum + b[i];
