@@ -1,4 +1,4 @@
-package com.example.sqwdemo.socketTest;
+package com.example.sqwdemo.SocketTest;
 
 import java.io.*;
 import java.net.ServerSocket;
